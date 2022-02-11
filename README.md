@@ -1,10 +1,6 @@
-# NFT-Finance
+# NFTs-Finance
 
-> NFt marketplace that allows users to get liquidity using their NFTs, rent out these NFTs for fees or loan them out for collateral
-# FinDAO
-
-
-
+> NFT marketplace that allows users to get liquidity using their NFTs, rent out these NFTs for fees or loan them out for collateral
 
 
 ## Template Information
