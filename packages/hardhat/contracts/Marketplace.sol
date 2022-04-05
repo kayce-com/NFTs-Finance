@@ -537,4 +537,33 @@ contract NFTMarket is ReentrancyGuard, Ownable {
         }
         return items;
     }
+
+    // Leasing NFTS inspired: 
+
+    function returnLeaseNFT(address nftContract, uint256 itemId)
+        public
+        payable
+        nonReentrant
+    {
+        uint256 price = idToMarketItem[itemId].price;
+        uint256 tokenId = idToMarketItem[itemId].tokenId;
+        // for approval @amiya
+        //IERC721(nftmarket).approve(idToMarketItem[itemId].seller, tokenId);
+        /* require(
+            //owner.balance == price,
+            idToMarketItem[itemId].seller.balance == price,
+            "Low Marketplace Balance to complete the purchase"
+        );
+        */
+        IERC721(nftContract).transferFrom(
+            msg.sender,
+            //idToMarketItem[itemId].seller,
+            address(this),
+            tokenId
+        );
+        idToMarketItem[itemId].owner = idToMarketItem[itemId].seller;
+        idToMarketItem[itemId].sold = false;
+        _itemsSold.decrement();
+        payable(owner).transfer(listingPrice);
+    }
 }
